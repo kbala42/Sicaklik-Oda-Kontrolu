@@ -25,7 +25,7 @@ def save_boxplot(df, metric, filepath: Path, title: str):
     plt.figure()
     data_pid = df[df["Controller"]=="PID"][metric].values
     data_mpc = df[df["Controller"]=="MPC"][metric].values
-    plt.boxplot([data_pid, data_mpc], labels=["PID","MPC"])
+    plt.boxplot([data_pid, data_mpc], tick_tick_labels=["PID","MPC"])
     plt.ylabel(metric)
     plt.title(title)
     plt.tight_layout()

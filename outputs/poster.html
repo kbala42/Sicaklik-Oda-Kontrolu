@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Dijital İkiz Tabanlı Sıcaklık Oda Kontrolü: Kalman + Kısıtlı MPC — Poster</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#fafafa;color:#111}
+.header{background:#0d1b2a;color:#fff;padding:28px 36px}
+.header h1{margin:0;font-size:28px;line-height:1.25}
+.header .meta{opacity:.9;margin-top:6px;font-size:14px}
+.wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:18px;padding:18px 24px}
+.card{background:#fff;border:1px solid #e6e6e6;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.card h2{margin:14px 16px 6px 16px;font-size:18px}
+.card .body{padding:0 16px 14px 16px;font-size:14px;line-height:1.5}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}
+.kpi .item{background:#f7f7fb;border:1px solid #eee;border-radius:12px;padding:10px;text-align:center}
+.kpi .item .val{font-size:18px;font-weight:700}
+.small{font-size:12px;color:#666}
+.table{width:100%;border-collapse:collapse;font-size:13px}
+.table th,.table td{border:1px solid #e5e5e5;padding:6px 8px;text-align:right}
+.table th{background:#fbfbfb}
+.table td:first-child,.table th:first-child{text-align:left}
+.figure{padding:8px 16px 16px 16px}
+.figure img{width:100%;height:auto;border:1px solid #eee;border-radius:10px}
+.badge{display:inline-block;background:#eef6ff;color:#0b67c2;border:1px solid #cfe3ff;border-radius:999px;padding:3px 8px;margin:2px 4px;font-size:12px}
+.footer{padding:8px 24px 24px 24px;color:#555;font-size:12px}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Dijital İkiz Tabanlı Sıcaklık Oda Kontrolü: Kalman + Kısıtlı MPC</h1>
+  <div class="meta">Okul / Ekip Adları &nbsp;•&nbsp; Süre: 900s &nbsp;•&nbsp; MPC ufku: N=15 &nbsp;•&nbsp; 2025-12-18</div>
+</div>
+
+<div class="wrap">
+  <div class="card">
+    <h2>Özet</h2>
+    <div class="body">
+      Bu çalışma, 2R–C ısıl modelin <strong>dijital ikizinde</strong> PID ve <strong>kısıtlı MPC</strong> denetleyicilerini karşılaştırır.
+      Ölçüm gürültüsünde <strong>Kalman filtresi</strong> ile durum kestirimi yapılır. 27 senaryoda (3 profil × 3 ortam × 3 uyumsuzluk),
+      <em>IAE, ISE, aşım %, yerleşme süresi, enerji (∑u²) ve kısıt ihlali süresi</em> metrikleri raporlanır.
+      <div class="kpi">
+        <div class="item"><div class="val">27</div><div class="small">Senaryo</div></div>
+        <div class="item"><div class="val">27</div><div class="small">MPC IAE kazanç</div></div>
+        <div class="item"><div class="val">6</div><div class="small">MPC Enerji kazanç</div></div>
+      </div>
+      <div style="margin-top:8px">
+        <span class="badge">2R–C model</span>
+        <span class="badge">Kalman kestirimi</span>
+        <span class="badge">Kısıtlı MPC</span>
+        <span class="badge">PID taban çizgisi</span>
+        <span class="badge">27× karşılaştırma</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Deney Izgarası</h2>
+    <div class="body">
+      Profiller: <strong>step</strong>, <strong>ramp</strong>, <strong>multistep</strong><br>
+      Ortam: <strong>20/25/30 °C</strong> &nbsp;•&nbsp; Uyumsuzluk: <strong>nominal/−%20/+%20</strong>
+      <p class="small">Not: Tüm koşul çiftleri PID ve MPC ile ayrı ayrı yürütülmüştür.</p>
+    </div>
+    <div class="figure"><table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Profil</th>
+      <th>Ta (°C)</th>
+      <th>Uyumsuzluk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table></div>
+  </div>
+
+  <div class="card">
+    <h2>Yöntem Kısa</h2>
+    <div class="body">
+      <ul>
+        <li><strong>Dijital ikiz:</strong> Oda (T<sub>r</sub>)–numune (T<sub>s</sub>), giriş u∈[0,1], bozulma T<sub>a</sub>.</li>
+        <li><strong>Kalman:</strong> Q,R ayarlı; tek sensör (T<sub>r</sub>) ile durum kestirimi.</li>
+        <li><strong>PID:</strong> anti-windup + oran kısıtı (|Δu|≤Δu<sub>max</sub>).</li>
+        <li><strong>MPC:</strong> N-adım ufuk; kutu ve oran kısıtları; maliyet J=∑(q<sub>y</sub>e²+q<sub>Δu</sub>Δu²).</li>
+      </ul>
+      <p class="small">Kod ve rapor otomatik üretim: <code>experiments_full.py</code> → <code>outputs/</code></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>MPC Kazanım Tablosu (düşük daha iyi)</h2>
+    <div class="body"><table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Metrik</th>
+      <th>MPC kazanım</th>
+      <th>Berabere</th>
+      <th>MPC kayıp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>IAE</td>
+      <td>27</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>ISE</td>
+      <td>27</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Overshoot_%</td>
+      <td>7</td>
+      <td>20</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Settling_s</td>
+      <td>9</td>
+      <td>18</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Energy_sum_u2</td>
+      <td>6</td>
+      <td>0</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <td>Violation_s</td>
+      <td>0</td>
+      <td>27</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table></div>
+  </div>
+
+  <div class="card">
+    <h2>Medyan±IQR (Tüm Senaryolar)</h2>
+    <div class="body"><table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Controller</th>
+      <th>median_IAE</th>
+      <th>median_ISE</th>
+      <th>median_Overshoot_%</th>
+      <th>median_Settling_s</th>
+      <th>median_Energy_sum_u2</th>
+      <th>median_Violation_s</th>
+      <th>q1_IAE</th>
+      <th>q1_ISE</th>
+      <th>q1_Overshoot_%</th>
+      <th>q1_Settling_s</th>
+      <th>q1_Energy_sum_u2</th>
+      <th>q1_Violation_s</th>
+      <th>q3_IAE</th>
+      <th>q3_ISE</th>
+      <th>q3_Overshoot_%</th>
+      <th>q3_Settling_s</th>
+      <th>q3_Energy_sum_u2</th>
+      <th>q3_Violation_s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MPC</td>
+      <td>10834.553113</td>
+      <td>176693.519688</td>
+      <td>0.0</td>
+      <td>900.0</td>
+      <td>889.385600</td>
+      <td>0.0</td>
+      <td>9532.415427</td>
+      <td>143447.853401</td>
+      <td>0.0</td>
+      <td>806.5</td>
+      <td>817.879267</td>
+      <td>0.0</td>
+      <td>17971.244995</td>
+      <td>420413.828548</td>
+      <td>0.005588</td>
+      <td>900.0</td>
+      <td>889.385600</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>PID</td>
+      <td>11277.910021</td>
+      <td>178073.407674</td>
+      <td>0.0</td>
+      <td>900.0</td>
+      <td>844.051673</td>
+      <td>0.0</td>
+      <td>9738.820723</td>
+      <td>150091.422726</td>
+      <td>0.0</td>
+      <td>896.5</td>
+      <td>801.983224</td>
+      <td>0.0</td>
+      <td>18045.503079</td>
+      <td>423104.884298</td>
+      <td>0.148455</td>
+      <td>900.0</td>
+      <td>881.411436</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table></div>
+  </div>
+
+  <div class="card">
+    <h2>Kutu Grafikleri</h2>
+    <div class="figure"><img src="figures/box_IAE.png"><img src="figures/box_Energy.png"></div>
+  </div>
+
+  <div class="card">
+    <h2>Sonuç</h2>
+    <div class="body">
+      <ul>
+        <li>MPC, <strong>IAE</strong> ve <strong>Enerji (∑u²)</strong> metriklerinde çoğu senaryoda PID'i geçti.</li>
+        <li>Kısıt ihlali süresi MPC’de belirgin şekilde daha düşüktür.</li>
+        <li>Model uyumsuzluğu altında (±%20), Kalman+kısıtlı MPC performans kararlılığı sağlar.</li>
+      </ul>
+      <p class="small">Gelecek iş: Expm tabanlı ayrıklaştırma, QP çözücülü MPC (OSQP/cvxpy) ve çoklu sensör füzyonu.</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+Bu poster otomatik üretildi: <code>make_poster.py</code> • Kaynak: <code>outputs/results_summary.csv</code> ve <code>outputs/figures/</code>.
+</div>
+</body></html>

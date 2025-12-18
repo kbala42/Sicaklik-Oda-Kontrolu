@@ -1,0 +1,7 @@
+Metric,MPC_wins,Ties,MPC_losses
+IAE,27,0,0
+ISE,27,0,0
+Overshoot_%,7,20,0
+Settling_s,9,18,0
+Energy_sum_u2,6,0,21
+Violation_s,0,27,0

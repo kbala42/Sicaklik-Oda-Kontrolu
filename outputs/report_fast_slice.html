@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><title>Hızlı Rapor</title></head>
+<body>
+<h1>Dijital İkiz — Hızlı Çalışan İlk Rapor</h1>
+<h2>Toplu Metrikler</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Scenario</th>
+      <th>Controller</th>
+      <th>IAE</th>
+      <th>ISE</th>
+      <th>Overshoot_%</th>
+      <th>Settling_s</th>
+      <th>Energy_sum_u2</th>
+      <th>Violation_s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>step_Ta25_nominal</td>
+      <td>PID</td>
+      <td>9181.111</td>
+      <td>283071.563</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>287.389</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>step_Ta25_nominal</td>
+      <td>MPC</td>
+      <td>9163.864</td>
+      <td>282017.855</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>289.386</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>ramp_Ta25_nominal</td>
+      <td>PID</td>
+      <td>6050.440</td>
+      <td>147386.524</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>281.475</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>ramp_Ta25_nominal</td>
+      <td>MPC</td>
+      <td>5996.364</td>
+      <td>145146.105</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>289.386</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>multistep_Ta25_nominal</td>
+      <td>PID</td>
+      <td>5580.067</td>
+      <td>110247.174</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>285.777</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>multistep_Ta25_nominal</td>
+      <td>MPC</td>
+      <td>5561.364</td>
+      <td>109562.759</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>289.386</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Örnek Zaman Yanıtları</h2>
+<img src="figures/step_PID.png"><img src="figures/step_MPC.png"><img src="figures/ramp_PID.png"><img src="figures/ramp_MPC.png"><img src="figures/multistep_PID.png"><img src="figures/multistep_MPC.png">
+<h2>Kutu Grafikleri</h2>
+<img src="figures/box_IAE.png">
+<img src="figures/box_Energy.png">
+<img src="figures/box_Violation.png">
+</body></html>

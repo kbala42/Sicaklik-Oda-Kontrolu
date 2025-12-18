@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><title>Analysis Summary</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 24px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ccc; padding: 6px; text-align: right; }
+th { background: #f7f7f7; } td:first-child { text-align:left; }
+img { max-width:100%; height:auto; border:1px solid #ddd; padding:6px; }
+</style></head><body>
+<h1>2204-A — Analiz Özeti</h1>
+<h2>Genel medyan±IQR</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Controller</th>
+      <th>median_IAE</th>
+      <th>median_ISE</th>
+      <th>median_Overshoot_%</th>
+      <th>median_Settling_s</th>
+      <th>median_Energy_sum_u2</th>
+      <th>median_Violation_s</th>
+      <th>q1_IAE</th>
+      <th>q1_ISE</th>
+      <th>q1_Overshoot_%</th>
+      <th>q1_Settling_s</th>
+      <th>q1_Energy_sum_u2</th>
+      <th>q1_Violation_s</th>
+      <th>q3_IAE</th>
+      <th>q3_ISE</th>
+      <th>q3_Overshoot_%</th>
+      <th>q3_Settling_s</th>
+      <th>q3_Energy_sum_u2</th>
+      <th>q3_Violation_s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MPC</td>
+      <td>10834.553113</td>
+      <td>176693.519688</td>
+      <td>0.0</td>
+      <td>900.0</td>
+      <td>889.385600</td>
+      <td>0.0</td>
+      <td>9532.415427</td>
+      <td>143447.853401</td>
+      <td>0.0</td>
+      <td>806.5</td>
+      <td>817.879267</td>
+      <td>0.0</td>
+      <td>17971.244995</td>
+      <td>420413.828548</td>
+      <td>0.005588</td>
+      <td>900.0</td>
+      <td>889.385600</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>PID</td>
+      <td>11277.910021</td>
+      <td>178073.407674</td>
+      <td>0.0</td>
+      <td>900.0</td>
+      <td>844.051673</td>
+      <td>0.0</td>
+      <td>9738.820723</td>
+      <td>150091.422726</td>
+      <td>0.0</td>
+      <td>896.5</td>
+      <td>801.983224</td>
+      <td>0.0</td>
+      <td>18045.503079</td>
+      <td>423104.884298</td>
+      <td>0.148455</td>
+      <td>900.0</td>
+      <td>881.411436</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<h2>MPC Kazanım Tablosu</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Metric</th>
+      <th>MPC_wins</th>
+      <th>Ties</th>
+      <th>MPC_losses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>IAE</td>
+      <td>27</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>ISE</td>
+      <td>27</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Overshoot_%</td>
+      <td>7</td>
+      <td>20</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Settling_s</td>
+      <td>9</td>
+      <td>18</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Energy_sum_u2</td>
+      <td>6</td>
+      <td>0</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <td>Violation_s</td>
+      <td>0</td>
+      <td>27</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Kutu Grafikleri</h2>
+<h3>IAE</h3><img src="figures/box_IAE.png"><h3>ISE</h3><img src="figures/box_ISE.png"><h3>Overshoot_%</h3><img src="figures/box_Overshoot_%.png"><h3>Settling_s</h3><img src="figures/box_Settling_s.png"><h3>Energy_sum_u2</h3><img src="figures/box_Energy_sum_u2.png"><h3>Violation_s</h3><img src="figures/box_Violation_s.png">
+</body></html>
