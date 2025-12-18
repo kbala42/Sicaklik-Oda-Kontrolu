@@ -1,0 +1,1 @@
+# Sicaklik-Oda-Kontrolu
